@@ -11,14 +11,14 @@ export const NAV_ITEMS = [
 ] as const;
 
 export const LINKS = {
-  sourceCode: "https://github.com/your-redteam",
+  sourceCode: "https://github.com/Neok1ra",
   linkedin: "https://linkedin.com/in/your-profile",
   twitter: "https://twitter.com/your-handle",
 } as const;
 
 export const SOCIAL_LINKS = [
   {
-    href: "https://github.com/your-redteam",
+    href: "https://github.com/Neok1ra",
     icon: FaGithub,
   },
   {

@@ -64,11 +64,14 @@ export const GitHubRepos = () => {
   // Light's GitHub username
   const username = 'Neok1ra';
 
+  // Refresh interval in milliseconds (5 minutes)
+  const REFRESH_INTERVAL = 5 * 60 * 1000;
+
   useEffect(() => {
     const fetchRepos = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc`);
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc&per_page=10`);
         
         if (!response.ok) {
           throw new Error(`Error fetching repositories: ${response.status}`);
@@ -85,7 +88,14 @@ export const GitHubRepos = () => {
       }
     };
 
+    // Fetch immediately on mount
     fetchRepos();
+
+    // Set up periodic refresh
+    const intervalId = setInterval(fetchRepos, REFRESH_INTERVAL);
+
+    // Clean up interval on unmount
+    return () => clearInterval(intervalId);
   }, [username]);
 
   // Format date to be more readable
