@@ -1,9 +1,9 @@
-import type { PropsWithChildren } from "react";
+import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import type { IconType } from "react-icons";
 
 import { cn } from "@/lib/utils";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   id?: string;
   leftIcon?: IconType;
   rightIcon?: IconType;
@@ -16,6 +16,7 @@ export const Button = ({
   containerClass,
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
+  ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
     <button
@@ -24,6 +25,7 @@ export const Button = ({
         "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black transition hover:opacity-75",
         containerClass
       )}
+      {...props}
     >
       {LeftIcon ? <LeftIcon /> : null}
 
